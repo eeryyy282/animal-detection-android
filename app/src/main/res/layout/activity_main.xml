@@ -28,6 +28,7 @@
             android:fontFamily="@font/poppins"
             android:text="@string/deteksi_hewan"
             android:textAlignment="center"
+            android:textColor="@color/pink"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/iv_animal_banner"
