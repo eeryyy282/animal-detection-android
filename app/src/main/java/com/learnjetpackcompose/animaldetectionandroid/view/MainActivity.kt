@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.learnjetpackcompose.animaldetectionandroid.R
 import com.learnjetpackcompose.animaldetectionandroid.databinding.ActivityMainBinding
 import com.learnjetpackcompose.animaldetectionandroid.helper.ClassifierHelperImage
-import com.learnjetpackcompose.animaldetectionandroid.helper.ShowToast
+import com.learnjetpackcompose.animaldetectionandroid.helper.showToast
 import com.yalantis.ucrop.UCrop
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.io.File
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         } else if (resultCode == UCrop.RESULT_ERROR) {
             val cropError = UCrop.getError(data!!)
             Log.d("Crop Error", "showImage: $cropError")
-            ShowToast(
+            showToast(
                 context = this@MainActivity,
                 message = getString(R.string.tidak_dapat_menggunakan_fungsi_crop_untuk_saat_ini)
             )
@@ -86,6 +86,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun imageShow() {
+        imageUri?.let {
+            Log.d("URI Image", "showImage: $it")
+            binding.ivPhotoAnalyze.setImageURI(it)
+        }
+    }
+
     private fun ucrop(uri: Uri) {
         val fileName = "${UUID.randomUUID()}.jpg"
         val filePath = Uri.fromFile(File(filesDir, fileName))
@@ -107,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 context = this,
                 classifierListener = object : ClassifierHelperImage.ClassifierListener {
                     override fun onError(error: String) {
-                        ShowToast(context = this@MainActivity, message = error)
+                        showToast(context = this@MainActivity, message = error)
                     }
 
                     override fun onResult(result: List<Classifications>?) {
@@ -127,7 +134,7 @@ class MainActivity : AppCompatActivity() {
             )
             imageUri?.let { classifierHelperImage.classifyStaticImage(it) }
         } else {
-            ShowToast(this@MainActivity, getString(R.string.tidak_ada_gambar_yang_dipilih))
+            showToast(this@MainActivity, getString(R.string.tidak_ada_gambar_yang_dipilih))
         }
     }
 
@@ -138,12 +145,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun imageShow() {
-        imageUri?.let {
-            Log.d("URI Image", "showImage: $it")
-            binding.ivPhotoAnalyze.setImageURI(it)
-        }
-    }
 
     companion object {
         const val EXTRA_IMAGE = "extra_image"
