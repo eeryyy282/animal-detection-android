@@ -1,32 +1,38 @@
-package com.learnjetpackcompose.animaldetectionandroid.view
+package com.learnjetpackcompose.animaldetectionandroid.view.home
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.learnjetpackcompose.animaldetectionandroid.R
-import com.learnjetpackcompose.animaldetectionandroid.view.home.HomeActivity
+import com.learnjetpackcompose.animaldetectionandroid.databinding.ActivityHomeBinding
+import com.learnjetpackcompose.animaldetectionandroid.view.main.MainActivity
 
-@SuppressLint("CustomSplashScreen")
-class SplashScreen : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_splash_screen)
+
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreen, HomeActivity::class.java)
+
+        setupAction()
+    }
+
+    private fun setupAction() {
+        binding.buttonStartDetection.setOnClickListener {
+            intent = Intent(this@HomeActivity, MainActivity::class.java)
             startActivity(intent)
-            finish()
-        }, 2000)
+        }
     }
 }

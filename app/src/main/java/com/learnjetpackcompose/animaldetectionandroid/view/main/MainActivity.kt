@@ -1,4 +1,4 @@
-package com.learnjetpackcompose.animaldetectionandroid.view
+package com.learnjetpackcompose.animaldetectionandroid.view.main
 
 import android.content.Intent
 import android.net.Uri
@@ -14,6 +14,7 @@ import com.learnjetpackcompose.animaldetectionandroid.R
 import com.learnjetpackcompose.animaldetectionandroid.databinding.ActivityMainBinding
 import com.learnjetpackcompose.animaldetectionandroid.helper.ClassifierHelperImage
 import com.learnjetpackcompose.animaldetectionandroid.helper.showToast
+import com.learnjetpackcompose.animaldetectionandroid.view.result.ResultActivity
 import com.yalantis.ucrop.UCrop
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.io.File
