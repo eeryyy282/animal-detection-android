@@ -62,8 +62,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setupAction() {
-        openGallery()
-        detectionImage()
+        binding.buttonSelectPicture.setOnClickListener {
+            openGallery()
+        }
+        binding.buttonNextMainActivity.setOnClickListener {
+            detectionImage()
+        }
     }
 
     private fun openGallery() {
