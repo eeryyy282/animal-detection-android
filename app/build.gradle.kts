@@ -48,7 +48,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.tensorflow.lite.support)
     implementation(libs.tensorflow.lite.metadata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -63,5 +62,10 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     implementation(libs.glide)
+
+    implementation(libs.tensorflow.lite.task.vision)
+    implementation(libs.gson)
+    implementation(libs.ucrop)
+
 
 }

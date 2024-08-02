@@ -12,4 +12,8 @@
     <string name="pilih_gambar_dari_galeri_anda_yang_ingin_dideteksi">Pilih gambar dari galeri anda yang ingin dideteksi</string>
     <string name="pilih_gambar">Pilih Gambar</string>
     <string name="gambar_analisis">Gambar Analisis</string>
+    <string name="gagal_mengidentifikasi_gambar">Gagal mengidentifikasi gambar</string>
+    <string name="tidak_dapat_menggunakan_fungsi_crop_untuk_saat_ini">Tidak dapat menggunakan fungsi crop untuk saat ini</string>
+    <string name="tidak_ditemukan_foto_coba_lagi">Tidak ditemukan foto, coba lagi</string>
+    <string name="tidak_ada_gambar_yang_dipilih">Tidak ada gambar yang dipilih</string>
 </resources>
