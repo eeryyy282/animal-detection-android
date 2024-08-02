@@ -32,7 +32,6 @@ class HomeActivity : AppCompatActivity() {
         binding.buttonStartDetection.setOnClickListener {
             intent = Intent(this@HomeActivity, MainActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }

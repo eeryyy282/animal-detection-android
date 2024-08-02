@@ -7,4 +7,9 @@
     <string name="tidak_ada_riwayat_deteksi_n_riwayat_anda_akan_disimpan_di_sini">Tidak ada riwayat deteksi \n Riwayat anda akan disimpan di sini</string>
     <string name="animal_image_error_message">Animal image error message</string>
     <string name="animal_image_banner">Animal image banner</string>
+    <string name="lanjutkan">Lanjutkan</string>
+    <string name="galeri">Galeri</string>
+    <string name="pilih_gambar_dari_galeri_anda_yang_ingin_dideteksi">Pilih gambar dari galeri anda yang ingin dideteksi</string>
+    <string name="pilih_gambar">Pilih Gambar</string>
+    <string name="gambar_analisis">Gambar Analisis</string>
 </resources>
