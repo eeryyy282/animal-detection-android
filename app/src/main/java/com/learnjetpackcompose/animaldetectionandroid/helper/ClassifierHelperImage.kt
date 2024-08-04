@@ -14,25 +14,30 @@ import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.task.core.BaseOptions
-import org.tensorflow.lite.task.vision.classifier.Classifications
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.text.NumberFormat
 
 class ClassifierHelperImage(
     val threshold: Float = 0.1f,
     val maxResult: Int = 1,
     val modelName: String = "animal_classification_model.tflite",
+    val labelsFileName: String = "labels_mobilenet_quant_v1_224.txt",
     val context: Context,
     val classifierListener: ClassifierListener?
 ) {
     private var imageClassifier: ImageClassifier? = null
+    private var labels: List<String> = emptyList()
 
     init {
         setupClassifierImage()
+        loadLabels()
     }
 
     interface ClassifierListener {
         fun onError(error: String)
-        fun onResult(result: List<Classifications>?)
+        fun onResult(result: List<String>?)
     }
 
     private fun setupClassifierImage() {
@@ -55,6 +60,17 @@ class ClassifierHelperImage(
         }
     }
 
+    private fun loadLabels() {
+        try {
+            val reader = BufferedReader(InputStreamReader(context.assets.open(labelsFileName)))
+            labels = reader.readLines()
+            reader.close()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error membaca label", e)
+            classifierListener?.onError("Error membaca label: ${e.message}")
+        }
+    }
+
     @Suppress("DEPRECATION")
     fun classifyStaticImage(imageUri: Uri) {
         if (imageClassifier == null) {
@@ -73,7 +89,12 @@ class ClassifierHelperImage(
         }.copy(Bitmap.Config.ARGB_8888, true)?.let { bitmap ->
             val tensorImage = imageProcessor.process(TensorImage.fromBitmap(bitmap))
             val result = imageClassifier?.classify(tensorImage)
-            classifierListener?.onResult(result)
+            val labeledResults = result?.flatMap { it.categories }?.map { category ->
+                val label = labels.getOrNull(category.index) ?: "Unknown"
+                val scorePercentage = NumberFormat.getPercentInstance().format(category.score)
+                "$label\n$scorePercentage"
+            }
+            classifierListener?.onResult(labeledResults)
         }
     }
 

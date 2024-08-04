@@ -16,9 +16,7 @@ import com.learnjetpackcompose.animaldetectionandroid.helper.ClassifierHelperIma
 import com.learnjetpackcompose.animaldetectionandroid.helper.showToast
 import com.learnjetpackcompose.animaldetectionandroid.view.result.ResultActivity
 import com.yalantis.ucrop.UCrop
-import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.io.File
-import java.text.NumberFormat
 import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
@@ -58,9 +56,7 @@ class MainActivity : AppCompatActivity() {
                 message = getString(R.string.tidak_dapat_menggunakan_fungsi_crop_untuk_saat_ini)
             )
         }
-
     }
-
 
     private fun setupAction() {
         binding.buttonSelectPicture.setOnClickListener {
@@ -118,19 +114,12 @@ class MainActivity : AppCompatActivity() {
                         showToast(context = this@MainActivity, message = error)
                     }
 
-                    override fun onResult(result: List<Classifications>?) {
-                        result?.let { it ->
-                            println(it)
-                            val category = it[0].categories.sortedByDescending { it?.score }
-                            val displayResult = category.joinToString("\n") {
-                                "${it.label}\n" + NumberFormat.getPercentInstance()
-                                    .format(it.score).trim()
-                            }
-                            resultModel = displayResult
+                    override fun onResult(result: List<String>?) {
+                        result?.let {
+                            resultModel = it.joinToString("\n")
                             toTheResultActivity()
                         }
                     }
-
                 }
             )
             imageUri?.let { classifierHelperImage.classifyStaticImage(it) }
@@ -145,7 +134,6 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(EXTRA_RESULT, resultModel)
         startActivity(intent)
     }
-
 
     companion object {
         const val EXTRA_IMAGE = "extra_image"

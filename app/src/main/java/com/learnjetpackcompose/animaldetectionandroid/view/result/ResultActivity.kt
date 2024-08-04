@@ -63,6 +63,10 @@ class ResultActivity : AppCompatActivity() {
         binding.buttonSaveResult.setOnClickListener {
             if (imageUri != null && result != null) {
                 resultViewModel.saveResult(result = result, time = timeDate, image = imageUri)
+                showToast(
+                    this@ResultActivity,
+                    getString(R.string.berhasil_menyimpan_hasil_prediksi)
+                )
             } else {
                 showToast(
                     this@ResultActivity,

@@ -71,6 +71,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         binding.rvResult.apply {
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.VERTICAL, false)
             adapter = resultAdapter
             addItemDecoration(
                 DividerItemDecoration(
