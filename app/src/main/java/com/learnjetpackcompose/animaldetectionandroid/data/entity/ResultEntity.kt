@@ -17,10 +17,7 @@ data class ResultEntity(
     @ColumnInfo(name = "timestamps")
     var timeStamps: String,
 
-    @ColumnInfo(name = "predicted_class")
-    var predictedClass: String,
+    @ColumnInfo(name = "result")
+    var result: String,
 
-    @ColumnInfo(name = "confidence_score")
-    var confidenceScore: String
-
-)
+    )
