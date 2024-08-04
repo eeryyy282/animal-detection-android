@@ -17,4 +17,8 @@
     <string name="tidak_ditemukan_foto_coba_lagi">Tidak ditemukan foto, coba lagi</string>
     <string name="tidak_ada_gambar_yang_dipilih">Tidak ada gambar yang dipilih</string>
     <string name="tidak_bisa_menyimpan_terjadi_kesalahan_menyimpan_data">Tidak bisa menyimpan, terjadi kesalahan menyimpan data</string>
+    <string name="gambar_hasil_prediksi">Gambar hasil prediksi</string>
+    <string name="hasil_analisis">Hasil Analisis</string>
+    <string name="tanggal_analisis">Tanggal Analisis</string>
+    <string name="hapus">Hapus</string>
 </resources>
